@@ -2,6 +2,13 @@
 #include<algorithm>
 using namespace std;
 
+// A linked list is a collection of nodes 
+// A node contains some data in it and a pointer which stores the address of the next node
+// In a doubly linked list node also stores the address of the previous node 
+
+
+//class to make a node 
+
 class node{
     public:
     int data;
@@ -15,6 +22,9 @@ class node{
     }
 };
 
+
+//this is the funciton to insert at the start of a singly linked list
+
 void insertathead(node*&head,int d){
     if(head==NULL){                //this to handle the case when list is empty
         head=new node(d);
@@ -25,6 +35,11 @@ void insertathead(node*&head,int d){
     temp->next=head;
     head=temp;
 }
+
+
+
+// this it to insert at the end of the singly linked list
+
 void insertatend(node*&head,int d){
     if(head==NULL){
         head=new node(d);
@@ -39,6 +54,9 @@ void insertatend(node*&head,int d){
 
 }
 
+
+// this function tells you the number of elementes in the singly linked list
+
 int size(node*head){
     int count=1;
     while(head->next!=NULL){
@@ -47,6 +65,10 @@ int size(node*head){
     }
     return count;
 }
+
+
+// This function is used to insert at any random position inside the singly linked list
+
 void insertatmiddle(node*&head,int d, int pos){
     if(head==NULL){
         head=new node(d);
@@ -75,6 +97,8 @@ void insertatmiddle(node*&head,int d, int pos){
 
 }
 
+// It is used to delete at the head of the singly linked list
+
 void deleteathead(node*&head){
     if(head==NULL)
     return;
@@ -85,6 +109,11 @@ void deleteathead(node*&head){
     
     return;
 }
+
+
+
+// this is used to delete at the tail of singly linked list
+
 
 void deleteattail(node*&head){
 
@@ -100,6 +129,9 @@ void deleteattail(node*&head){
 
     return;
 }
+
+
+//this is used to delete at the middle of the singly linked list
 
 void deleteatmiddle(node*&head,int pos){
     if(pos==1)
@@ -130,6 +162,8 @@ void deleteatmiddle(node*&head,int pos){
 
 
 
+// this function returns a bollean value of true/false if the element is found in the singly linked list or not respectively
+
 bool searchdata(node*head,int d){
 
     if(head->data==d)
@@ -148,6 +182,8 @@ bool searchdata(node*head,int d){
 
 }
 
+// This function search for the value at a particular position in the singly linked list
+
 void searchposition(node*head,int pos){
     int cur=1;
     if(pos>size(head)){
@@ -162,6 +198,9 @@ void searchposition(node*head,int pos){
     cout<<head->data;
 }
 
+
+// It is used to print the singly and doubly linked list
+
 void print(node*head){
     
     while(head->next!=NULL){
@@ -170,6 +209,12 @@ void print(node*head){
     }
     cout<<head->data;
 }
+
+
+// It is used to make a singly linked list
+// Just keep isnerting the elements till you want to insert at least provide -1 to terminate insertion
+
+
 node* input(){
     int n;
     
@@ -184,15 +229,24 @@ node* input(){
     return head;
 }
 
+
+// this is operator overloading so that cout<< can work as we know it works
+
 ostream & operator <<(ostream& os,node* head){
     print(head);
     return os;
 }
 
+
+// Similarly this for the proper and normal functioning of cin>> operator
+
 istream & operator >>(istream& is, node* &head){
     head=input();
     return is;
 }
+
+
+// this function will reverse your singly linked list
 
 void reverselist(node*& head){
     node*n;;
@@ -207,6 +261,10 @@ void reverselist(node*& head){
     head=prev;
 }
 
+
+// this will also reverse your singly linked list but using recursion
+
+
 node* recursivereverse(node*& head){
     if(head->next==NULL or head==NULL)
      return head;
@@ -220,6 +278,9 @@ node* recursivereverse(node*& head){
 
 }
 
+
+// This is used to find the middle element of the list
+
 node* middlepoint(node*head){
     if(head==NULL or head->next==NULL)
     return head;
@@ -232,6 +293,9 @@ node* middlepoint(node*head){
     }
     return slow;
 }
+
+
+// this is used to join two sorted singly linked list into one sorted list
 
 node* join(node*head,node*oyo){
     if(head==NULL){
@@ -254,6 +318,9 @@ node* join(node*head,node*oyo){
     return n;
 }
 
+
+//this is to mergeosrt to list in order for the list to be sorted in ascending order
+
 node* mergesort(node*head){
     if(head==NULL or head->next==NULL)
     return head;
@@ -269,6 +336,9 @@ node* mergesort(node*head){
     return c;
 }
 
+
+// This is to find the kith node from the last of the list
+
 int kthnode(node*head,int k){
     node*slow=head;
     while(k){
@@ -281,6 +351,9 @@ int kthnode(node*head,int k){
     }
     return slow->data;
 }
+
+
+// this is to make a cycle inside the singly linked list
 
 void makecycle(node*&head,int k){
     if(head==NULL or head->next==NULL)
@@ -302,6 +375,9 @@ void makecycle(node*&head,int k){
 
 }
 
+
+// This is to detect wether the cycle exist or not withing the list
+
 bool detectcycle(node*head){
     node*slow=head,*fast=head;
     while(fast and fast->next){
@@ -314,6 +390,8 @@ bool detectcycle(node*head){
 
     return false;
 }
+
+// if the cycle exist this function can be used to remove that cycle in the list
 
 void removecycle(node*&head){
     node*slow=head,*fast=head;
@@ -333,6 +411,9 @@ void removecycle(node*&head){
 
 }
 
+
+// this is to create a doubly linked list
+
 void doubllylist(node*&head){
     if(head==NULL)
     cin>>head;
@@ -348,6 +429,9 @@ void doubllylist(node*&head){
     
 }
 
+
+// insertion at head of the doubly linked list
+
 void insertatheaddouble(node*&head,int d){
     if(head==NULL){
         head=new node(d);
@@ -357,6 +441,9 @@ void insertatheaddouble(node*&head,int d){
     temp->next=head;
     head=temp;
 }
+
+
+// insertion at the tail of the doubly linked list
 
 void insertattaildouble(node*&head, int d){
     if(head==NULL){
@@ -371,6 +458,9 @@ void insertattaildouble(node*&head, int d){
     n->next=temp;
     temp->prev=n;
 }
+
+
+//insertion at some random position of the list(doubly)
 
 void insertatmiddledouble(node*&head,int d, int pos){
     if(head==NULL)
@@ -397,6 +487,8 @@ void insertatmiddledouble(node*&head,int d, int pos){
 }
 
 
+// this is to delete at the head of the doubly linked list
+
 void deleteatheaddouble(node*&head){
     node*temp=head;
     temp=temp->next;
@@ -404,6 +496,9 @@ void deleteatheaddouble(node*&head){
     head=temp;
     head->prev=NULL;
 }
+
+
+// deletion at the tail of the doubly linked list
 
 void deleteattaildouble(node*&head){
     node*temp=head;
@@ -417,6 +512,10 @@ void deleteattaildouble(node*&head){
     
 
 }
+
+
+//delettion at some ransom position inside the doubly linked list
+
 
 void deleteatmiddledouble(node*&head,int pos){
     if(pos>=size(head)){
@@ -443,6 +542,9 @@ void deleteatmiddledouble(node*&head,int pos){
     delete cur;
 }
 
+
+// this is to create a circular doubly linked list
+
 void circularlist(node*&head){
     if(head==NULL){
         doubllylist(head);
@@ -456,6 +558,9 @@ void circularlist(node*&head){
     temp->next=head;
     head->prev=temp;
 }
+
+
+//insertion at the head of circular doubly linked list
 
 void insertatheadcircular(node*&head,int d){
     if(head==NULL){
@@ -477,6 +582,9 @@ void insertatheadcircular(node*&head,int d){
 
 }
 
+
+// insertion at the tail of circular doubly linked list
+
 void insertattailcircularl(node*&head,int d){
     if(head==NULL)
     {head=new node(d);
@@ -496,6 +604,10 @@ void insertattailcircularl(node*&head,int d){
 
 }
 
+
+// this function is used to calculate the size of the circualar doubly linked list
+
+
 int sizecircular(node*head){
     node*temp=head;
     int count=1;
@@ -506,6 +618,10 @@ int sizecircular(node*head){
     
     return count;
 }
+
+
+//insertion at the middle of circular doubly linked list
+
 
 void insertatmiddlecircular(node*&head,int d, int pos){
     pos=pos%sizecircular(head);
@@ -535,6 +651,10 @@ void insertatmiddlecircular(node*&head,int d, int pos){
     
 }
 
+
+// this function is used to print the circular doubly linked list
+
+
 void printcircular(node*head){
     node*temp=head;
     while(head->next!=temp)
@@ -544,6 +664,10 @@ void printcircular(node*head){
     }
     cout<<head->data;
 }
+
+
+//deletion at the head of circular doubly linked list
+
 
 void deleteatheadcircular(node*&head){
     if(head==NULL)
@@ -557,6 +681,10 @@ void deleteatheadcircular(node*&head){
 
 }
 
+
+//deletion at the tail of circular doubly linked list
+
+
 void deleteattailcircular(node*&head){
     if(head==NULL)
     return;
@@ -566,6 +694,9 @@ void deleteattailcircular(node*&head){
     head->prev=temp->prev;
     delete temp;
 }
+
+
+//deletion at the middle of the circular doubly linked list
 
 void deleteatmiddlecircular(node*&head,int pos){
     pos=pos%sizecircular(head);
@@ -588,6 +719,9 @@ void deleteatmiddlecircular(node*&head,int pos){
     }
 }
 
+
+
+// this is your main function 
 
 int main()
 {
